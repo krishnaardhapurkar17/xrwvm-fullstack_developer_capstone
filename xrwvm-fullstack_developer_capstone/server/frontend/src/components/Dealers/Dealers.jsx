@@ -64,7 +64,7 @@ return(
       <option value="" selected disabled hidden>State</option>
       <option value="All">All States</option>
       {states.map(state => (
-          <option value={state}>{state}</option>
+          <option key={state} value={state}>{state}</option>
       ))}
       </select>        
 
@@ -75,7 +75,7 @@ return(
       }
       </tr>
      {dealersList.map(dealer => (
-        <tr>
+        <tr key={dealer.id}>
           <td>{dealer['id']}</td>
           <td><a href={'/dealer/'+dealer['id']}>{dealer['full_name']}</a></td>
           <td>{dealer['city']}</td>

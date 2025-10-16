@@ -1,7 +1,5 @@
 {
   "esversion": 8,
   "node": true,
-  "browser": true,
-  "jsx": true,
   "devel": true
 }

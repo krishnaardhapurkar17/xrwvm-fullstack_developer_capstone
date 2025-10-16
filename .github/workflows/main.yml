@@ -56,16 +56,23 @@ jobs:
   lint_frontend_js:
     name: Lint Frontend JS Files (React)
     runs-on: ubuntu-latest
+
+    # Add this to specify the working directory for all steps in this job
+    defaults:
+      run:
+        working-directory: ./xrwvm-fullstack_developer_capstone/server/frontend
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 14
-      - name: Install JSHint
-        run: npm install jshint --global
-      - name: Run Linter on Frontend
-        run: |
-          find ./xrwvm-fullstack_developer_capstone/server/frontend/src -name "*.js" -exec jshint --config .jshintrc-frontend {} +
-          echo "Linted frontend JS files successfully
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npx eslint .

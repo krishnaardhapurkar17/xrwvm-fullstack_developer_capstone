@@ -36,24 +36,37 @@ jobs:
         find . -name "*.py" -exec flake8 {} +
         echo "Linted all the python files successfully"
 
-  lint_js:
-      name: Lint JavaScript Files
-      runs-on: ubuntu-latest
-
-      steps:
+  lint_backend_js:
+    name: Lint Backend JS Files
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 14
-
       - name: Install JSHint
         run: npm install jshint --global
-
-      - name: Run Linter
+      - name: Run Linter on Backend
         run: |
-          # This command finds all JavaScript files recursively and runs JSHint on them
-          find . -name "*.js" -exec jshint {} +
-          echo "Linted all the js files successfully"
+          find ./server/database -name "*.js" -exec jshint --config .jshintrc-backend {} +
+          echo "Linted backend JS files successfully"
+
+  lint_frontend_js:
+    name: Lint Frontend JS Files (React)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Install JSHint
+        run: npm install jshint --global
+      - name: Run Linter on Frontend
+        run: |
+          find ./server/frontend/src -name "*.js" -exec jshint --config .jshintrc-frontend {} +
+          echo "Linted frontend JS files successfully"
+          

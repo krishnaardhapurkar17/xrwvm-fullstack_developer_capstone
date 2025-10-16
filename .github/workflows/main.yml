@@ -50,7 +50,7 @@ jobs:
         run: npm install jshint --global
       - name: Run Linter on Backend
         run: |
-          find ./server/database -name "*.js" -exec jshint --config .jshintrc-backend {} +
+          find ./xrwvm-fullstack_developer_capstone/server/database -name "*.js" -exec jshint --config .jshintrc-backend {} +
           echo "Linted backend JS files successfully"
 
   lint_frontend_js:
@@ -67,6 +67,5 @@ jobs:
         run: npm install jshint --global
       - name: Run Linter on Frontend
         run: |
-          find ./server/frontend/src -name "*.js" -exec jshint --config .jshintrc-frontend {} +
-          echo "Linted frontend JS files successfully"
-          
+          find ./xrwvm-fullstack_developer_capstone/server/frontend/src -name "*.js" -exec jshint --config .jshintrc-frontend {} +
+          echo "Linted frontend JS files successfully
